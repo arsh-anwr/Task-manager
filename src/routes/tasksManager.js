@@ -168,4 +168,16 @@ tasksRoutes.delete("/:id", (req, res) => {
   }
 });
 
+tasksRoutes.get("/priority/:priority", (req, res) => {
+  let priority = req.params.priority;
+
+  let task = tasks.filter((task) => task.priority === priority);
+
+  if (task) {
+    res.status(200).send(task);
+  } else {
+    res.status(404).send("there's no task with id " + priority);
+  }
+});
+
 module.exports = tasksRoutes;
